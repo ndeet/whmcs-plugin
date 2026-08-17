@@ -246,8 +246,8 @@ try {
             throw new RuntimeException('The configured transaction speed is invalid.');
         }
 
-        // Every value sent to BTCPay now comes from the locked WHMCS record or
-        // administrator configuration. No browser-supplied metadata is copied.
+        // Send only the data needed to create and reconcile the payment. Buyer
+        // profile fields are deliberately not disclosed to BTCPay.
         $options = array(
             'notificationURL' => $notificationUrl,
             'redirectURL' => $returnUrl,
@@ -260,14 +260,6 @@ try {
             'transactionSpeed' => $transactionSpeed,
             'currency' => $currency,
             'btcpayUrl' => $btcpayUrl,
-            'buyerName' => trim((string) $data->firstname . ' ' . (string) $data->lastname),
-            'buyerAddress1' => (string) $data->address1,
-            'buyerAddress2' => (string) $data->address2,
-            'buyerCity' => (string) $data->city,
-            'buyerState' => (string) $data->state,
-            'buyerZip' => (string) $data->postcode,
-            'buyerEmail' => (string) $data->email,
-            'buyerPhone' => (string) $data->phonenumber,
         );
 
         $invoice = bpCreateInvoice($invoiceId, $price, $invoiceId, $options);

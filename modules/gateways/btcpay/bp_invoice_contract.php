@@ -412,17 +412,7 @@ function bpGetWhmcsInvoiceForContract($whmcsInvoiceId, $forUpdate = false, $clie
             'tblinvoices.total',
             'tblinvoices.status',
             'tblinvoices.paymentmethod',
-            'tblcurrencies.code as currency',
-            'tblclients.firstname',
-            'tblclients.lastname',
-            'tblclients.email',
-            'tblclients.address1',
-            'tblclients.address2',
-            'tblclients.city',
-            'tblclients.state',
-            'tblclients.postcode',
-            'tblclients.country',
-            'tblclients.phonenumber'
+            'tblcurrencies.code as currency'
         );
 
     if ($clientId !== null) {

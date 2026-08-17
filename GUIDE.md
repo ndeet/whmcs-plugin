@@ -24,7 +24,7 @@ This version creates a `mod_btcpay_invoice_contracts` table in the WHMCS databas
 
 Callbacks for BTCPay invoices created by older plugin versions are intentionally rejected because they have no persisted amount, currency, or invoice-ID contract. Deploy the update when no BTCPay checkout is active and allow the normal BTCPay invoice-expiration window to pass before replacing the old files.
 
-Invoice creation now requires an authenticated WHMCS client session that owns the invoice. Callback and return URLs, along with buyer metadata, are loaded from WHMCS rather than accepted from the browser. Repeated or concurrent submissions reuse a matching active BTCPay invoice.
+Invoice creation now requires an authenticated WHMCS client session that owns the invoice. Callback and return URLs are loaded from WHMCS rather than accepted from the browser, and buyer profile data is not sent to BTCPay. Repeated or concurrent submissions reuse a matching active BTCPay invoice.
 
 The callback accepts only bounded JSON POST requests. If BTCPay later reports an already-credited transaction as `invalid` or unexpectedly `expired`, the plugin does not reverse accounting automatically; it records a **MANUAL REVIEW REQUIRED** entry in the gateway transaction log, WHMCS activity log, and PHP error log. An administrator must reconcile that invoice and transaction.
 
